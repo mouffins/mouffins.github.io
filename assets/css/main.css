@@ -1785,3 +1785,51 @@ input, select, textarea {
 			opacity: 0;
 		}
 
+		.item-list {
+			display: flex;
+			justify-content: space-around;
+			margin-bottom: 30px;
+		  }
+		  
+		  .item {
+			padding: 10px;
+			background-color: #202842;
+			border-radius: 5px;
+			cursor: pointer;
+			text-align: center;
+		  }
+		  
+		  .item:hover {
+			background-color: #718bdf;
+			color: white;
+		  }
+		  
+		  #comparison-container {
+			display: none;
+			margin-top: 30px;
+		  }
+		  
+		  #comparison-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 0 auto;
+			text-align: center;
+		  }
+		  
+		  #comparison-table th, #comparison-table td {
+			padding: 10px;
+			border: 1px solid #202842;
+		  }
+		  
+		  #comparison-table thead th {
+			background-color: #202842;
+			color: white;
+		  }
+		  
+		  #comparison-table tbody td:first-child {
+			font-weight: bold;
+			background-color: #03091c;
+			position: sticky;
+			left: 0;
+		  }
+		  
