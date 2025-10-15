@@ -1942,7 +1942,7 @@ ul.icons {
    MASONRY GRID
    ------------------------- */
 .grid {
-  column-count: 2; /* number of columns */
+  column-count: 3; /* number of columns */
   column-gap: 1rem;
   padding: 1rem 0;
   max-height: 0;
