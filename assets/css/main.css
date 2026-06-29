@@ -1892,19 +1892,24 @@ ul.icons {
 		.gallery-toggle {
   display: none;
 }
-
 .gallery-section {
   margin-bottom: 2rem;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   padding-bottom: 1rem;
 }
 
+.gallery-toggle {
+  display: none;
+}
+
+/* Masonry container */
 .grid {
   column-count: 3;
   column-gap: 1rem;
   padding: 1rem 0;
 }
 
+/* Individual images */
 .grid img {
   width: 100%;
   display: block;
@@ -1935,22 +1940,6 @@ ul.icons {
 @media (max-width: 600px) {
   .grid {
     column-count: 1;
-  }
-}
-
-.grid img:hover {
-  transform: scale(1.03);
-}
-
-@media screen and (max-width: 800px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr;
   }
 }
 

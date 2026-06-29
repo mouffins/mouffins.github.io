@@ -1,22 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
   const images = document.querySelectorAll(".grid img");
 
-  images.forEach(img => {
-    if (img.dataset.src) {
-      img.src = img.dataset.src;
+  const revealIfReady = img => {
+    if (img.dataset.inView === "true" && img.dataset.loaded === "true") {
+      img.classList.add("visible");
     }
-  });
+  };
 
-  const observer = new IntersectionObserver((entries, observer) => {
+  const loadObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
+      const img = entry.target;
+
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+        img.onload = () => {
+          img.dataset.loaded = "true";
+          revealIfReady(img);
+        };
+
+        if (img.dataset.src && !img.src) {
+          img.src = img.dataset.src;
+        }
+
+        if (img.complete && img.naturalWidth > 0) {
+          img.dataset.loaded = "true";
+          revealIfReady(img);
+        }
+
+        observer.unobserve(img);
       }
     });
   }, {
-    threshold: 0.15
+    rootMargin: "250px 0px",
+    threshold: 0.01
   });
 
-  images.forEach(img => observer.observe(img));
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const img = entry.target;
+
+      if (entry.isIntersecting) {
+        img.dataset.inView = "true";
+        revealIfReady(img);
+      } else {
+        img.dataset.inView = "false";
+      }
+    });
+  }, {
+    rootMargin: "0px",
+    threshold: 0.2
+  });
+
+  images.forEach(img => {
+    img.dataset.loaded = "false";
+    img.dataset.inView = "false";
+
+    loadObserver.observe(img);
+    revealObserver.observe(img);
+  });
 });
